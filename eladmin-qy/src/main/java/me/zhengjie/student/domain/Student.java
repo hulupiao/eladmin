@@ -30,6 +30,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import me.zhengjie.course.domain.Course;
+import me.zhengjie.studentCourse.domain.StudentCourse;
 import org.hibernate.annotations.*;
 import java.sql.Timestamp;
 import java.io.Serializable;
@@ -74,33 +75,33 @@ public class Student implements Serializable {
     @ApiModelProperty(value = "status")
     private Integer status;
 
-    @ManyToMany
-    @JsonIgnore
-    @ApiModelProperty(value = "student course")
-    @JoinTable(name = "qy_student_course",
-            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
-    private Set<Course> courses;
+
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @ApiModelProperty(value = "student course")
+//    @JoinTable(name = "qy_student_course",
+//            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
+//    private Set<Course> courses;
 
     public void copy(Student source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Student student = (Student) o;
-        return Objects.equals(id, student.id) &&
-                Objects.equals(name, student.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        if (o == null || getClass() != o.getClass()) {
+//            return false;
+//        }
+//        Student student = (Student) o;
+//        return Objects.equals(id, student.id) &&
+//                Objects.equals(name, student.name);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name);
+//    }
 }

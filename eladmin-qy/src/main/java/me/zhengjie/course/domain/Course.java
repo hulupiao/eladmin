@@ -72,29 +72,40 @@ public class Course implements Serializable {
     @ApiModelProperty(value = "status")
     private Integer status;
 
-    @JSONField(serialize = false)
-    @ManyToMany(mappedBy = "courses")
-    @ApiModelProperty(value = "student course", hidden = true)
-    private Set<Student> students;
+//    @JSONField(serialize = false)
+//    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
+//    @ApiModelProperty(value = "student course", hidden = true)
+//    private Set<Student> students;
+
+//    public Set<Student> getStudents() {
+//        return students;
+//    }
+
+//    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY)
+//    @JsonIgnoreProperties("course")
+//    @JoinTable(name = "qy_lesson")
+//    @JoinColumn(name = "course_id")
+//    @ApiModelProperty(value = "课时")
+//    private Set<Lesson> lessons;
 
     public void copy(Course source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Course course = (Course) o;
-        return Objects.equals(id, course.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        if (o == null || getClass() != o.getClass()) {
+//            return false;
+//        }
+//        Course course = (Course) o;
+//        return Objects.equals(id, course.id);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name);
+//    }
 }

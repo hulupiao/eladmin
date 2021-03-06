@@ -13,32 +13,32 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.studentCourse.domain;
+package me.zhengjie.lesson.domain;
 
 import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
-import lombok.Getter;
-import lombok.Setter;
-import me.zhengjie.course.domain.Course;
-import me.zhengjie.student.domain.Student;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import me.zhengjie.course.domain.Course;
+import org.hibernate.annotations.*;
+import java.sql.Timestamp;
 import java.io.Serializable;
 
 /**
 * @website https://el-admin.vip
 * @description /
 * @author hulupiao
-* @date 2021-03-06
+* @date 2021-03-07
 **/
 @Entity
-@Getter
-@Setter
-@Table(name="qy_student_course")
-public class StudentCourse implements Serializable {
+@Data
+@Table(name="qy_lesson")
+public class Lesson implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,26 +46,34 @@ public class StudentCourse implements Serializable {
     @ApiModelProperty(value = "id")
     private Integer id;
 
-//    @Column(name = "student_id")
-//    @ApiModelProperty(value = "studentId")
-//    private Integer studentId;
-//
 //    @Column(name = "course_id")
 //    @ApiModelProperty(value = "courseId")
 //    private Integer courseId;
 
-//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "student_id")
-    @ApiModelProperty(value = "学生")
-    private Student student;
+    @Column(name = "title")
+    @ApiModelProperty(value = "title")
+    private String title;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @Column(name = "content")
+    @ApiModelProperty(value = "content")
+    private String content;
+
+    @Column(name = "create_time")
+    @CreationTimestamp
+    @ApiModelProperty(value = "createTime")
+    private Timestamp createTime;
+
+    @Column(name = "update_time")
+    @UpdateTimestamp
+    @ApiModelProperty(value = "updateTime")
+    private Timestamp updateTime;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
-    @ApiModelProperty(value = "课程")
     private Course course;
 
-    public void copy(StudentCourse source){
+    public void copy(Lesson source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }
 }

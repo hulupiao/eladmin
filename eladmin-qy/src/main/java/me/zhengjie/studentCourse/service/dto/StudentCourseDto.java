@@ -16,7 +16,11 @@
 package me.zhengjie.studentCourse.service.dto;
 
 import lombok.Data;
+import me.zhengjie.course.domain.Course;
+import me.zhengjie.student.domain.Student;
+
 import java.io.Serializable;
+import java.util.Set;
 
 /**
 * @website https://el-admin.vip
@@ -32,4 +36,8 @@ public class StudentCourseDto implements Serializable {
     private Integer studentId;
 
     private Integer courseId;
+
+    private Student student;
+
+    private Course course;
 }

@@ -13,23 +13,16 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.studentCourse.service.dto;
+package me.zhengjie.lesson.repository;
 
-import lombok.Data;
-import java.util.List;
-import me.zhengjie.annotation.Query;
-import me.zhengjie.course.domain.Course;
-import me.zhengjie.student.domain.Student;
+import me.zhengjie.lesson.domain.Lesson;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
 * @website https://el-admin.vip
 * @author hulupiao
-* @date 2021-03-06
+* @date 2021-03-07
 **/
-@Data
-public class StudentCourseQueryCriteria{
-
-    private Student student;
-
-    private Course course;
+public interface LessonRepository extends JpaRepository<Lesson, Integer>, JpaSpecificationExecutor<Lesson> {
 }

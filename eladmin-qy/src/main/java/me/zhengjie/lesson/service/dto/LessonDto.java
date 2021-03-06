@@ -13,23 +13,34 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.studentCourse.service.dto;
+package me.zhengjie.lesson.service.dto;
 
 import lombok.Data;
-import java.util.List;
-import me.zhengjie.annotation.Query;
 import me.zhengjie.course.domain.Course;
-import me.zhengjie.student.domain.Student;
+
+import java.sql.Timestamp;
+import java.io.Serializable;
 
 /**
 * @website https://el-admin.vip
+* @description /
 * @author hulupiao
-* @date 2021-03-06
+* @date 2021-03-07
 **/
 @Data
-public class StudentCourseQueryCriteria{
+public class LessonDto implements Serializable {
 
-    private Student student;
+    private Integer id;
+
+    private Integer courseId;
+
+    private String title;
+
+    private String content;
+
+    private Timestamp createTime;
+
+    private Timestamp updateTime;
 
     private Course course;
 }

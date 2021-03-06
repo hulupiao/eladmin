@@ -13,23 +13,27 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.studentCourse.service.dto;
+package me.zhengjie.lesson.service.dto;
 
 import lombok.Data;
 import java.util.List;
 import me.zhengjie.annotation.Query;
 import me.zhengjie.course.domain.Course;
-import me.zhengjie.student.domain.Student;
 
 /**
 * @website https://el-admin.vip
 * @author hulupiao
-* @date 2021-03-06
+* @date 2021-03-07
 **/
 @Data
-public class StudentCourseQueryCriteria{
+public class LessonQueryCriteria{
 
-    private Student student;
+    /** 精确 */
+    @Query
+    private Integer courseId;
 
-    private Course course;
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String title;
+
 }

@@ -13,23 +13,20 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.studentCourse.service.dto;
+package me.zhengjie.lesson.service.mapstruct;
 
-import lombok.Data;
-import java.util.List;
-import me.zhengjie.annotation.Query;
-import me.zhengjie.course.domain.Course;
-import me.zhengjie.student.domain.Student;
+import me.zhengjie.base.BaseMapper;
+import me.zhengjie.lesson.domain.Lesson;
+import me.zhengjie.lesson.service.dto.LessonDto;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
 /**
 * @website https://el-admin.vip
 * @author hulupiao
-* @date 2021-03-06
+* @date 2021-03-07
 **/
-@Data
-public class StudentCourseQueryCriteria{
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+public interface LessonMapper extends BaseMapper<LessonDto, Lesson> {
 
-    private Student student;
-
-    private Course course;
 }

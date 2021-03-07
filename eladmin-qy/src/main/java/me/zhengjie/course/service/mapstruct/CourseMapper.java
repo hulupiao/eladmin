@@ -18,6 +18,7 @@ package me.zhengjie.course.service.mapstruct;
 import me.zhengjie.base.BaseMapper;
 import me.zhengjie.course.domain.Course;
 import me.zhengjie.course.service.dto.CourseDto;
+import me.zhengjie.student.domain.Student;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

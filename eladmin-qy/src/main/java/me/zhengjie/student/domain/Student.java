@@ -15,9 +15,10 @@
 */
 package me.zhengjie.student.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+import lombok.*;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
@@ -26,9 +27,6 @@ import javax.validation.constraints.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import me.zhengjie.course.domain.Course;
 import me.zhengjie.studentCourse.domain.StudentCourse;
 import org.hibernate.annotations.*;
@@ -48,6 +46,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString(exclude = {"courses"})
+@EqualsAndHashCode(exclude = {"courses"})
 @Table(name="qy_student")
 public class Student implements Serializable {
 
@@ -76,11 +75,17 @@ public class Student implements Serializable {
     private Integer status;
 
 
+//    @JSONField(serialize = false)
 //    @ManyToMany(fetch = FetchType.LAZY)
 //    @ApiModelProperty(value = "student course")
 //    @JoinTable(name = "qy_student_course",
 //            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
+//    private Set<Course> courses;
+
+//    @JSONField(serialize = false)
+//    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
+//    @ApiModelProperty(value = "student course")
 //    private Set<Course> courses;
 
     public void copy(Student source){

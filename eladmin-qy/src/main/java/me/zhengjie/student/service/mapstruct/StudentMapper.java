@@ -28,7 +28,7 @@ import org.mapstruct.ReportingPolicy;
 * @author hulupiao
 * @date 2021-03-06
 **/
-@Mapper(componentModel = "spring", uses = {Course.class}, unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface StudentMapper extends BaseMapper<StudentDto, Student> {
 
 }

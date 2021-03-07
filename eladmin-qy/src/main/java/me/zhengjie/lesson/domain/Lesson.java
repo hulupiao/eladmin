@@ -15,7 +15,8 @@
 */
 package me.zhengjie.lesson.domain;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
@@ -36,7 +37,10 @@ import java.io.Serializable;
 * @date 2021-03-07
 **/
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 @Table(name="qy_lesson")
 public class Lesson implements Serializable {
 
@@ -68,8 +72,9 @@ public class Lesson implements Serializable {
     @ApiModelProperty(value = "updateTime")
     private Timestamp updateTime;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "course_id")
     private Course course;
 

@@ -16,6 +16,7 @@
 package me.zhengjie.lesson.service.mapstruct;
 
 import me.zhengjie.base.BaseMapper;
+import me.zhengjie.course.service.mapstruct.CourseMapper;
 import me.zhengjie.lesson.domain.Lesson;
 import me.zhengjie.lesson.service.dto.LessonDto;
 import org.mapstruct.Mapper;
@@ -26,7 +27,7 @@ import org.mapstruct.ReportingPolicy;
 * @author hulupiao
 * @date 2021-03-07
 **/
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", uses = {CourseMapper.class}, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface LessonMapper extends BaseMapper<LessonDto, Lesson> {
 
 }

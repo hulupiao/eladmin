@@ -28,10 +28,12 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import me.zhengjie.annotation.Log;
+import me.zhengjie.lesson.domain.Lesson;
 import me.zhengjie.student.domain.Student;
 import org.hibernate.annotations.*;
 import java.sql.Timestamp;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -91,13 +93,12 @@ public class Course implements Serializable {
     @ApiModelProperty(value = "student course", hidden = true)
     private Set<Student> students;
 
-
-//    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY)
-//    @JsonIgnoreProperties("course")
-//    @JoinTable(name = "qy_lesson")
-//    @JoinColumn(name = "course_id")
-//    @ApiModelProperty(value = "课时")
-//    private Set<Lesson> lessons;
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
+    @ApiModelProperty(value = "课时")
+    private List<Lesson> lessons;
 
     public void copy(Course source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));

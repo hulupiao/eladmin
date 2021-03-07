@@ -42,5 +42,5 @@ public class StudentDto implements Serializable {
 
     private Integer status;
 
-    private Set<CourseDto> courses;
+//    private Set<CourseDto> courses;
 }

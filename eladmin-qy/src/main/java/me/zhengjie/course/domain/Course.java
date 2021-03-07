@@ -44,18 +44,22 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode(exclude = {"students"})
+@ToString(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name="qy_course")
 public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @ToString.Include
+    @EqualsAndHashCode.Include
     @ApiModelProperty(value = "id")
     private Integer id;
 
     @Column(name = "name")
+    @ToString.Include
+    @EqualsAndHashCode.Include
     @ApiModelProperty(value = "name")
     private String name;
 
@@ -78,18 +82,15 @@ public class Course implements Serializable {
 //    @ApiModelProperty(value = "student course", hidden = true)
 //    private Set<Student> students;
 
-    @ToString.Exclude
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "qy_student_course",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id"))
-    @JsonIgnoreProperties(value = "course")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ApiModelProperty(value = "student course", hidden = true)
     private Set<Student> students;
 
-//    public Set<Student> getStudents() {
-//        return students;
-//    }
 
 //    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY)
 //    @JsonIgnoreProperties("course")
@@ -101,21 +102,4 @@ public class Course implements Serializable {
     public void copy(Course source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
     }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) {
-//            return true;
-//        }
-//        if (o == null || getClass() != o.getClass()) {
-//            return false;
-//        }
-//        Course course = (Course) o;
-//        return Objects.equals(id, course.id);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, name);
-//    }
 }

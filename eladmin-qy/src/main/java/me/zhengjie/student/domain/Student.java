@@ -74,17 +74,12 @@ public class Student implements Serializable {
     @ApiModelProperty(value = "status")
     private Integer status;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @ApiModelProperty(value = "student course")
-    @JoinTable(name = "qy_student_course",
-            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
-    private Set<Course> courses;
-
-//    @JSONField(serialize = false)
-//    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JsonIgnore
 //    @ApiModelProperty(value = "student course")
+//    @JoinTable(name = "qy_student_course",
+//            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"))
 //    private Set<Course> courses;
 
     public void copy(Student source){

@@ -75,28 +75,32 @@ public class Course implements Serializable {
     @ApiModelProperty(value = "updateTime")
     private Timestamp updateTime;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1", insertable = false)
     @ApiModelProperty(value = "status")
     private Integer status;
 
-//    @JSONField(serialize = false)
-//    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "qy_student_course",
+//            joinColumns = @JoinColumn(name = "course_id"),
+//            inverseJoinColumns = @JoinColumn(name = "student_id"))
+//    @EqualsAndHashCode.Exclude
+//    @ToString.Exclude
 //    @ApiModelProperty(value = "student course", hidden = true)
 //    private Set<Student> students;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "qy_student_course",
-            joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id"))
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @ApiModelProperty(value = "student course", hidden = true)
-    private Set<Student> students;
+//    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+//    @EqualsAndHashCode.Exclude
+//    @ToString.Exclude
+//    @JsonIgnoreProperties("course")
+//    @ApiModelProperty(value = "课时")
+//    private List<Lesson> lessons;
 
-    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id")
+    @JSONField(serialize = false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @JsonIgnore
+    @JsonIgnoreProperties("course")
     @ApiModelProperty(value = "课时")
     private List<Lesson> lessons;
 

@@ -16,6 +16,7 @@
 package me.zhengjie.lesson.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
@@ -73,6 +74,7 @@ public class Lesson implements Serializable {
     private Timestamp updateTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("lesson")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JoinColumn(name = "course_id")
